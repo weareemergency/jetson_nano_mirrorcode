@@ -88,7 +88,7 @@ class Graph(TodoDataBase):
     def get_health_neck(self, id):
         if self.connect_db:
             cursor = self.connection.cursor()
-            query = f"select userid, angle, detectdate, checkcom from neckdata where userid = '{id}' detectdate desc limit 7;"
+            query = f"select userid, angle, detectdate, checkcom from neckdata where userid = '{id}' order by necknum desc limit 7;"
             cursor.execute(query)
             result = cursor.fetchall() # db 결과 저장
             

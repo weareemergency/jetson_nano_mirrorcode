@@ -32,7 +32,9 @@ class Header_footer:
         self.Yemd_label = Label(self.root, font=('NaumGothic',20), fg="white", bg="#1b1b1b") # 년월일 출력 label 설정 정의
         self.weather_icon_label = Label(self.root, image=self.root.weather_icon, bg="#1b1b1b", borderwidth=0, highlightthickness=0) # 날씨 그림을 가져와 출력하는 label 이다
         self.weather_tem_label = Label(self.root, font=('NanumGothic', 30), fg="white", bg="#1b1b1b") # 날씨 온도를 출력하는 label 이다
-
+        self.main_go_box = Button(self.root, width=65,height=34,  bg="#1b1b1b", 
+                                  borderwidth=0, highlightthickness=0,command=self.go_back_main)
+        
         self.Thread_time()
         self.startThread_Ymd()
         self.Thead_weather()
@@ -43,8 +45,19 @@ class Header_footer:
         self.canvas.create_window(250, 220, window=self.weather_tem_label)
         self.canvas.create_window(130, 200, window=self.weather_icon_label)
         self.canvas.create_window(330, 170, window=self.waether_posion_label)
+        #self.canvas.create_window(200, 300, window=self.waether_posion_label)
+        self.canvas.create_window(800, 300, window=self.main_go_box)
         # label window 에 생성 한다
-
+        
+    def go_back_main(self):
+        self.black_img = Image.open("img/1B1B1B.png")
+        self.black_img = self.black_img.resize((1050, 1200))
+        self.root.black_img = ImageTk.PhotoImage(self.black_img)
+        self.star_button = Label(self.root,image=self.root.black_img,width=1050,height=1200, bg="white",borderwidth=0, 
+                                        highlightthickness=0)
+        self.canvas.create_window(540, 1000, window=self.star_button)
+        main.main_menu(self.canvas, self.root)
+        
     def update_time(self):
         current_time = datetime.now().strftime("%H:%M")
         self.time_label.config(text=current_time)

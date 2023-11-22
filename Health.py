@@ -131,12 +131,13 @@ class HealthList:
             avg_data = None
             
             print(len(result))
-            
+            print("결과")
+            print(result)
             if len(result) == 0:
                 self.date_label['text'] = "최신 측정을 해주세요"
-            elif len(result) < 7:
+            else:
                 self.date_label['text'] = "측정 데이터가 더 필요합니다"
-                if result[0][1] < 1:
+                if result[0][1] < 1.05:
                     self.check_health['text'] = "거북목이 감지 되었습니다"
                     self.details['text'] = f"- 거북목이 감지 되었습니다.\n" + "- 정확한 측정은 전문가와 상담해주세요"
                     self.suggestion['text'] = "거북목 교정 스트레칭을 하는 것을 추천 드립니다."
@@ -144,28 +145,6 @@ class HealthList:
                     self.check_health['text'] = "거북목이 감지 되지 않았습니다"
                     self.details['text'] = f"- 거북목이 감지 되지 않았습니다.\n" + "- 정확한 측정은 전문가와 상담해주세요"
                     self.suggestion['text'] = "꾸준한 운동을 해주세요"
-            else:
-                for i in result:
-                    count = count + 1
-                    if data == None:
-                        data=i[1]
-                    else:
-                        if avg_data == None:
-                            avg_data = i[1]
-                        avg_data = (i[1]+avg_data)/2
-                print(data) 
-                if data < 1.05 :
-                    self.date_label['text'] = f"{result[6][2]} ~ {result[0][2]} 까지의 데이터로 분석한 결과입니다"
-                    if data > avg_data:                 
-                        self.check_health['text'] = "저번 측정 대비 자세가 더 약화 되었습니다"
-                        self.details['text'] = f"- 거북목이 감지되었지만 전 주 대비향상 되었습니다. 수치는 {data-avg_data} 증가하였습니다. \n" + "- 이대로 유지해주세요. 정확한 측정은 전문가와 상담해주세요"
-                    elif data < avg_data:
-                        self.check_health['text'] = "저번 측정 대비 자세가 더 악화 되었습니다"
-                        self.details['text'] = f"- 거북목이 감지 되었습니다. 수치는 {avg_data-data} 감소하였습니다. \n" + "- 정확한 측정은 전문가와 상담해주세요"
-                    self.suggestion['text'] = "거북목 교정 스트레칭을 하는 것을 추천 드립니다."
-                else :
-                    self.date_label['text'] = f"{result[6][2]} ~ {result[0][2]} 까지의 데이터로 분석한 결과입니다"
-                    self.check_health['text'] = "거북목이 감지되지 않았습니다"
             
             self.canvas.create_window(250, 1170, window=self.grap_label2)
             self.canvas.create_window(360, 1170, window=self.grap_label1)
@@ -177,28 +156,10 @@ class HealthList:
             self.canvas.create_window(525, 720, window=self.date_label)
             self.canvas.create_window(285, 620, window=self.health_result)
             self.canvas.create_window(540, 980, window=self.rectangle)
-            grap_list = []
-            if len(result) < 7:
-                self.plot(0, 0, 0, 0, 0, 0, 0)
-            else:
-                for i in result:
-                    if i[1] < 1:
-                        grap_list.append(int(i[1]*10))
-                    else:
-                        grap_list.append(0)
-                    print(int(i[1]*10))
-                print('heheh')
-                print(grap_list)
-                # print(int(grap_list[0]))
-                # print(int(grap_list[1]))
-                # print(int(grap_list[2]))
-                # print(int(grap_list[3]))
-                # print(int(grap_list[4]))
-                # print(int(grap_list[5]))
-                # print(int(grap_list[6]))
-                # print(type(int(grap_list[0])))
-                # self.plot(int(grap_list[0]),int(grap_list[1]),int(grap_list[2]),int(grap_list[3]),int(grap_list[4]),int(grap_list[5]),int(grap_list[6]))
-                self.plot(int(grap_list[0]),int(grap_list[1]),int(grap_list[2]),int(grap_list[3]),int(grap_list[4]),int(grap_list[5]),int(grap_list[6]))
+            # grap_list = []
+            
+            self.plot(5, 4, 3, 2, 0, 0, 0)
+            
             self.grap_label2.lift()
             self.details_sub_label.lift()
             self.details.lift()
@@ -212,6 +173,7 @@ class HealthList:
         
         fig = Figure(figsize=(6, 3), dpi=100)
         #print(sel)
+        """
         x=np.array([1,2,3,4,5,6,7])
         y=np.array([sel1, sel2, sel3, sel4, sel5, sel6, sel7])
         x2=np.array([1,2,3,4,5,6,7])
@@ -225,10 +187,11 @@ class HealthList:
         
         xs2=np.linspace(1,7,500)
         ys2=model2(xs2)
+        """
         plt.rcParams['font.family'] = 'NanumGothic'
         plot1 = fig.add_subplot(111)
-        plot1.plot(xs, ys,zorder=50, color = 'green',label='거북목')
-        plot1.plot(xs2, ys2,zorder=50, color = 'blue',label='목디스크')
+        plot1.plot([1,2,3,4,5,6,7], [sel1, sel2, sel3, sel4, sel5, sel6, sel7],zorder=50, color = 'green',label='거북목')
+        plot1.plot([1,2,3,4,5,6,7], [0,0,0,0,0,0,0],zorder=50, color = 'blue',label='목디스크')
         
         plot1.axis('off')
         plot1.legend()

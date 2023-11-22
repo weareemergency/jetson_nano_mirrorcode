@@ -52,6 +52,7 @@ class AI:
         #측정 실패시 음성
         filename = './mpfile/fail.mp3'
         playsound.playsound(filename)
+        
     def gstreamer_pipeline(
         capture_width=1280,
         capture_height=720,
@@ -78,6 +79,7 @@ class AI:
                 display_height,
             )
         )
+        
     def update_cam(self):
         #cap = cv2.VideoCapture(0)
         print(self.gstreamer_pipeline(flip_method=0))
