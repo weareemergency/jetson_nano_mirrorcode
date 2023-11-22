@@ -8,9 +8,6 @@ import main, Health # class 가져 오기
 
 from tkinter import *
 from PIL import ImageTk, Image
-from Module.Draw.draw import Draw
-from Module.Draw.XY import Vertex, Body
-from Module.detect.imagedetect import detect
 import ai 
 from database import Graph
 import time

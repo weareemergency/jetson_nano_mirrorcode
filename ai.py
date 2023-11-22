@@ -1,9 +1,9 @@
 import cv2
 #import mediapipe as mp
-import threading
+# import threading
 import os
 import PIL.Image, PIL.ImageTk
-import main, Health # class 가져 오기
+# import main, Health # class 가져 오기
 import torch 
 
 from tkinter import *
