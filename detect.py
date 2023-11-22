@@ -79,6 +79,7 @@ class AI:
                 if cv2.waitKey(0) == 27 or count == 200: # 여기가 수정부분
                     self.now_time =0
                     # self.result = test__1()
+                    """
                     model = ai.Detect('Result/UserPicture.jpeg')
                     check_value = model.get_coordinates()
                     values = model.combine_coordinates()
@@ -89,15 +90,12 @@ class AI:
                     x = abs(ex_value - nx_value)
                     y = ny_value - ey_value
                     result = y/x
-                    
-                    print(result)
-                    
+                    """
+                    #print(result)
+                    check_value=[1]
                     check_value.index(1)
                     check_value.index(2)
                     check_value.index(3)
-                    print('db go')
-                    A = Graph()
-                    A.inesrt_angle(result)
                     
                     break
                 #cv2.imshow('Main', frame)

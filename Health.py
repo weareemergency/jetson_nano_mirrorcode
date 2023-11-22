@@ -154,7 +154,7 @@ class HealthList:
                             avg_data = i[1]
                         avg_data = (i[1]+avg_data)/2
                 print(data) 
-                if data < 1 :
+                if data < 1.05 :
                     self.date_label['text'] = f"{result[6][2]} ~ {result[0][2]} 까지의 데이터로 분석한 결과입니다"
                     if data > avg_data:                 
                         self.check_health['text'] = "저번 측정 대비 자세가 더 약화 되었습니다"
